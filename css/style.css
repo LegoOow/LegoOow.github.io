@@ -6098,6 +6098,11 @@ button.bg-danger:focus {
   background-color: #f8f9fa !important;
 }
 
+.bg-oniPink {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 233, 241, var(--tw-bg-opacity));
+}
+
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
 button.bg-light:focus {
