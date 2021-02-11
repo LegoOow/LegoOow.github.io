@@ -5,7 +5,7 @@ const container = document.getElementById('container');
 container.appendChild(div0);
 
 const nav = document.createElement('nav');
-nav.className = 'col navbar navbar-expand-xs';
+nav.className = 'col navbar navbar-expand-xs bg-oniPink rounded m-3';
 div0.appendChild(nav);
 
 const a0 = document.createElement('a');
@@ -29,7 +29,7 @@ const div1 = document.createElement('div');
 div1.className = 'row mt-3';
 container.appendChild(div1);
 
-function recup () {
+
     let request = new XMLHttpRequest();
     request.onreadystatechange = function() {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -91,8 +91,8 @@ function recup () {
     }
     request.open("GET", "http://localhost:3000/api/teddies");
     request.send();
-}
 
 
-recup()
+
+
 
