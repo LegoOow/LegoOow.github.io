@@ -25,10 +25,9 @@ img0.alt = 'Logo Orinoco';
 img0.width = '200';
 a0.appendChild(img0);
 
-const div1 = document.createElement('div');
-div1.className = 'row mt-3';
-container.appendChild(div1);
-
+let ul = document.createElement('ul');
+container.appendChild(ul);
+ul.className = 'row mt-3 list-unstyled';
 
     let request = new XMLHttpRequest();
     request.onreadystatechange = function() {
@@ -38,54 +37,49 @@ container.appendChild(div1);
             var response = JSON.parse(this.responseText);
             response.forEach(element => {
 
-                let ul = document.createElement('ul');
-                div1.appendChild(ul);
-                ul.className = 'col-12 col-lg-4 list-unstyled';
-
                 let li = document.createElement('li');
                 ul.appendChild(li);
+                li.className = 'col-12 col-lg-4'
+
+                let link = document.createElement('a');
+                li.appendChild(link);
+                link.id = 'teddyLink';
+                link.classList = 'stretched-link';
+                link.href = 'product.html?id=' + element._id;
                     
                 let figure = document.createElement('figure');
                 li.appendChild(figure);
                 figure.className = 'card mb-3 shadow';
     
-                let img = document.createElement('img');
-                figure.appendChild(img);
-                img.className = 'card-img-top';
-                img.id = 'teddy1-img';
-                img.src='';
+                let teddyImg = document.createElement('img');
+                figure.appendChild(teddyImg);
+                teddyImg.className = 'card-img-top';
+                teddyImg.id = 'teddyImg';
+                teddyImg.src = element.imageUrl;
     
-                let figcaption = document.createElement('figcaption');
-                figure.appendChild(figcaption);
-                figcaption.className = 'card-body';
-                figcaption.id = 'teddy1-info';
+                let teddyInfo = document.createElement('figcaption');
+                figure.appendChild(teddyInfo);
+                teddyInfo.className = 'card-body';
+                teddyInfo.id = 'teddyInfo';
     
-                let h5 = document.createElement('h5');
-                figcaption.appendChild(h5);
-                h5.className = 'card-title';
-                h5.id = 'teddy1-name';
-    
-                let p0 = document.createElement('p');
-                figcaption.appendChild(p0);
-                p0.id = 'teddy1-price';
-                p0.classList = 'card-text text-right';
-    
-                let span = document.createElement('span');
-                figcaption.appendChild(span);
-                span.classList = 'card-text';
-                span.id = 'teddy1-description';
-
-                console.log('element: ', element);
-                var teddyName = document.getElementById('teddy1-name');
+                let teddyName = document.createElement('h5');
+                teddyInfo.appendChild(teddyName);
+                teddyName.className = 'card-title text-center';
+                teddyName.id = 'teddyName';
                 teddyName.textContent = element.name;
-                var teddyPrice = document.getElementById('teddy1-price');
+    
+                let teddyPrice = document.createElement('p');
+                teddyInfo.appendChild(teddyPrice);
+                teddyPrice.id = 'teddyPrice';
+                teddyPrice.classList = 'card-text text-center';
                 teddyPrice.textContent = (element.price/100 + '€');
-                var teddyDescription = document.getElementById('teddy1-description');
+    
+                let teddyDescription = document.createElement('span');
+                figure.appendChild(teddyDescription);
+                teddyDescription.classList = 'mx-3 my-3';
+                teddyDescription.id = 'teddyDescription';
                 teddyDescription.textContent = element.description;
-                var teddyImage = document.getElementById('teddy1-img');
-                teddyImage.src = element.imageUrl;
-                
-                
+  
             });
         };
     }

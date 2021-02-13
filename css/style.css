@@ -5779,6 +5779,10 @@ a.close.disabled {
   color: #212529;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .carousel {
   position: relative;
 }
