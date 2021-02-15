@@ -28,6 +28,8 @@ a0.appendChild(img0);
 const params = new URLSearchParams(document.location.search);
 const id = params.get('id');
 
+//Product//
+
 fetch('http://localhost:3000/api/teddies/' + id)
     .then(response => response.json())
     .then(function(data) {
