@@ -1,3 +1,18 @@
+// Panier //
+
+if (localStorage.getItem('monPanier')){
+    console.log('panier OK')
+}
+else {
+    console.log('création panier')
+    let init = []
+    localStorage.setItem('monPanier', (JSON.stringify(init)))
+};
+let panier = JSON.parse(localStorage.getItem('monPanier'));
+
+const params = new URLSearchParams(document.location.search);
+const id = params.get('id');
+
 // Navigation //
 const div0 = document.createElement('div');
 div0.className = 'row';
@@ -13,7 +28,7 @@ const a1 = document.createElement('a')
 a0.className = 'navbar-brand';
 a0.href = 'index.html';
 a1.className = 'nav-link';
-a1.href = '#';
+a1.href = 'cart.html';
 a1.textContent = 'Panier';
 nav.appendChild(a0);
 nav.appendChild(a1);
@@ -25,10 +40,7 @@ img0.alt = 'Logo Orinoco';
 img0.width = '200';
 a0.appendChild(img0);
 
-const params = new URLSearchParams(document.location.search);
-const id = params.get('id');
-
-//Product//
+//Produit//
 
 fetch('http://localhost:3000/api/teddies/' + id)
     .then(response => response.json())
@@ -80,22 +92,44 @@ fetch('http://localhost:3000/api/teddies/' + id)
             div3.style = ('background-color:' + element);
         });
         
+        //Ajout produit//
         let a2 = document.createElement('a');
         div1.appendChild(a2);
-        a2.href = 'card.html';
 
         let addProduct= document.createElement('button');
         a2.appendChild(addProduct);
         addProduct.className = 'w-100 text-center rounded mt-1'
-        addProduct.id = 'addProduct';
+        addProduct.id = 'btnAddProduct';
 
         let teddyPrice= document.createElement('span');
         addProduct.appendChild(teddyPrice);
         teddyPrice.id = 'teddyPrice';
         teddyPrice.textContent = ('Ajouter au panier pour ' + data.price/100 + '€');
+        
+        function addCart(){
+            let button = document.getElementById('btnAddProduct');
+            button.addEventListener('click', function(e){ 
+                e.preventDefault();
+                if (panier.find(product => product.name === 'Norbert')) {
+                    panier.push({quantity: quantity++});
+                } else {
+                        panier.push({name: data.name, id: data._id, price: data.price, quantity: 1});    
+                    }
+                localStorage.setItem('monPanier', JSON.stringify(panier));
+                alert('Vous avez ajouté ' + data.name + ' au panier');
+                document.location.reload()
+            }) 
+        }
+        addCart()
+        
+        const teddy1 = panier.find(product => product.name === 'Norbert');
+        console.log(teddy1);
+})
 
-    })
 
+    
+
+    
 
     
 

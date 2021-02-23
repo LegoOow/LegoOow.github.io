@@ -13,7 +13,7 @@ const a1 = document.createElement('a')
 a0.className = 'navbar-brand';
 a0.href = 'index.html';
 a1.className = 'nav-link';
-a1.href = '#';
+a1.href = 'cart.html';
 a1.textContent = 'Panier';
 nav.appendChild(a0);
 nav.appendChild(a1);
