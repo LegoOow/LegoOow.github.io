@@ -1,29 +1,35 @@
+//Fonction//
+
+nav();
+
 // Navigation //
-const div0 = document.createElement('div');
-div0.className = 'row';
-const container = document.getElementById('container');
-container.appendChild(div0);
+function nav() {
 
-const nav = document.createElement('nav');
-nav.className = 'col navbar navbar-expand-xs bg-oniPink rounded m-3';
-div0.appendChild(nav);
+    const div0 = document.createElement('div');
+    const container = document.getElementById('container');
+    const nav = document.createElement('nav');
+    const a0 = document.createElement('a');
+    const a1 = document.createElement('a')
+    const img0 = document.createElement('img');
+    
+    div0.className = 'row';
+    nav.className = 'col navbar navbar-expand-xs bg-oniPink rounded m-3';
+    a0.className = 'navbar-brand';
+    a0.href = 'index.html';
+    a1.className = 'nav-link text-black';
+    a1.href = 'cart.html';
+    a1.textContent = 'Panier';
+    img0.className = 'bg-oniPink';
+    img0.src = 'images/logo.png';
+    img0.alt = 'Logo Orinoco';
+    img0.width = '200';
 
-const a0 = document.createElement('a');
-const a1 = document.createElement('a')
-a0.className = 'navbar-brand';
-a0.href = 'index.html';
-a1.className = 'nav-link';
-a1.href = 'cart.html';
-a1.textContent = 'Panier';
-nav.appendChild(a0);
-nav.appendChild(a1);
-
-const img0 = document.createElement('img');
-img0.className = 'bg-oniPink';
-img0.src = 'images/logo.png';
-img0.alt = 'Logo Orinoco';
-img0.width = '200';
-a0.appendChild(img0);
+    container.appendChild(div0);
+    div0.appendChild(nav);
+    nav.appendChild(a0);
+    nav.appendChild(a1);
+    a0.appendChild(img0);
+}   
 
 let ul = document.createElement('ul');
 container.appendChild(ul);

@@ -1,5 +1,8 @@
-// Panier //
+//Fonction//
 
+nav();
+
+// Panier //
 if (localStorage.getItem('monPanier')){
     console.log('panier OK')
 }
@@ -10,35 +13,38 @@ else {
 };
 let panier = JSON.parse(localStorage.getItem('monPanier'));
 
+
 const params = new URLSearchParams(document.location.search);
 const id = params.get('id');
 
 // Navigation //
-const div0 = document.createElement('div');
-div0.className = 'row';
-const container = document.getElementById('container');
-container.appendChild(div0);
+function nav() {
 
-const nav = document.createElement('nav');
-nav.className = 'col navbar navbar-expand-xs bg-oniPink rounded m-3';
-div0.appendChild(nav);
+    const div0 = document.createElement('div');
+    const container = document.getElementById('container');
+    const nav = document.createElement('nav');
+    const a0 = document.createElement('a');
+    const a1 = document.createElement('a')
+    const img0 = document.createElement('img');
+    
+    div0.className = 'row';
+    nav.className = 'col navbar navbar-expand-xs bg-oniPink rounded m-3';
+    a0.className = 'navbar-brand';
+    a0.href = 'index.html';
+    a1.className = 'nav-link text-black';
+    a1.href = 'cart.html';
+    a1.textContent = 'Panier';
+    img0.className = 'bg-oniPink';
+    img0.src = 'images/logo.png';
+    img0.alt = 'Logo Orinoco';
+    img0.width = '200';
 
-const a0 = document.createElement('a');
-const a1 = document.createElement('a')
-a0.className = 'navbar-brand';
-a0.href = 'index.html';
-a1.className = 'nav-link';
-a1.href = 'cart.html';
-a1.textContent = 'Panier';
-nav.appendChild(a0);
-nav.appendChild(a1);
-
-const img0 = document.createElement('img');
-img0.className = 'bg-oniPink';
-img0.src = 'images/logo.png';
-img0.alt = 'Logo Orinoco';
-img0.width = '200';
-a0.appendChild(img0);
+    container.appendChild(div0);
+    div0.appendChild(nav);
+    nav.appendChild(a0);
+    nav.appendChild(a1);
+    a0.appendChild(img0);
+}   
 
 //Produit//
 
@@ -105,32 +111,55 @@ fetch('http://localhost:3000/api/teddies/' + id)
         addProduct.appendChild(teddyPrice);
         teddyPrice.id = 'teddyPrice';
         teddyPrice.textContent = ('Ajouter au panier pour ' + data.price/100 + '€');
-        
+
         function addCart(){
             let button = document.getElementById('btnAddProduct');
             button.addEventListener('click', function(e){ 
                 e.preventDefault();
-                if (panier.find(product => product.name === 'Norbert')) {
-                    panier.push({quantity: quantity++});
+                //Premier produit//
+                if (panier.length === 0) {
+                    let firstProduct = {id: data._id, name: data.name, price: data.price, quantity: 1}
+                    panier.push(firstProduct);
+                    localStorage.setItem('monPanier', JSON.stringify(panier));
+                    alert('Vous avez ajouté ' + data.name + ' au panier');
+                    document.location.reload()
+                //Ajout 1, si le produit existe//
                 } else {
-                        panier.push({name: data.name, id: data._id, price: data.price, quantity: 1});    
+                        let productAlreadyAdded = false;
+                        let cartUp = panier.map(product => {       
+                            return {...product, quantity: product.quantity + 1}
+                        })
+                        cartUp.forEach(response => {
+                            productAlreadyAdded = true;
+                            localStorage.setItem('monPanier', JSON.stringify(cartUp));
+                            alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
+                            document.location.reload()
+                        })
                     }
-                localStorage.setItem('monPanier', JSON.stringify(panier));
-                alert('Vous avez ajouté ' + data.name + ' au panier');
-                document.location.reload()
+                //Si le produit n'existe pas encore//
+                if(!productAlreadyAdded) {
+                    panier.push({id: data._id, name: data.name, price: data.price, quantity: 1});
+                    localStorage.setItem('monPanier', JSON.stringify(panier));
+                    alert('Vous avez ajouté ' + data.name + ' au panier');
+                    document.location.reload()          
+                }
             }) 
         }
-        addCart()
-        
-        const teddy1 = panier.find(product => product.name === 'Norbert');
-        console.log(teddy1);
+        addCart();
+})
+    
+let cartUp2 = panier.map(product => {
+                        
+    if ( product.name === 'Norbert') {
+        return {...product, quantity: product.quantity + 1}
+    }
 })
 
+let cartUp = panier.map(product => {       
+    return {...product, quantity: product.quantity + 1}
+})
 
-    
-
-    
-
+console.log(cartUp)
     
 
 

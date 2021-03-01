@@ -84,6 +84,10 @@ p {
   margin-bottom: 1rem;
 }
 
+.text-black {
+  color: black;
+}
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
@@ -627,6 +631,15 @@ pre code {
 .row-cols-6 > * {
   flex: 0 0 16.6666666667%;
   max-width: 16.6666666667%;
+}
+
+.fs-1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.fs-4 {
+  font-size: 20px;
 }
 
 .col-auto {
