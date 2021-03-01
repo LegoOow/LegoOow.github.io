@@ -126,12 +126,13 @@ fetch('http://localhost:3000/api/teddies/' + id)
                 //Ajout 1, si le produit existe//
                 } else {
                         let productAlreadyAdded = false;
-                        let cartUp = panier.map(product => {       
+                        let cartUp2 = panier.map(product => {       
                             return {...product, quantity: product.quantity + 1}
                         })
-                        cartUp.forEach(response => {
+                        cartUp2.forEach(response => {
+                            if(response.id === data._id)
                             productAlreadyAdded = true;
-                            localStorage.setItem('monPanier', JSON.stringify(cartUp));
+                            localStorage.setItem('monPanier', JSON.stringify(cartUp2));
                             alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
                             document.location.reload()
                         })
@@ -159,7 +160,7 @@ let cartUp = panier.map(product => {
     return {...product, quantity: product.quantity + 1}
 })
 
-console.log(cartUp)
+console.log(JSON.parse(localStorage.getItem('monPanier')));
     
 
 
