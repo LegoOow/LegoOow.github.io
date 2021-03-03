@@ -129,7 +129,7 @@ fetch('http://localhost:3000/api/teddies/' + id)
                                             return {...product, quantity: product.quantity + 1}
                                         })
                         
-                        panier.forEach(response => {
+                        panier.find(response => {
                             if(response.id === data._id) {
                                 localStorage.setItem('monPanier', JSON.stringify(cartUp));
                                 alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
