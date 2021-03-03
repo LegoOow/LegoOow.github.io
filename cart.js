@@ -114,21 +114,19 @@ function displayCart() {
                 quantityTeddyCart.className = 'ml-3';
                 quantityTeddyCart.name = 'quantity';
                 quantityTeddyCart.id = 'selectQuantity';
-                quantityTeddyCart.textContent = element.quantity;
                 product.appendChild(quantityTeddyCart);
-                console.log(element.quantity);
 
                 function optionQuantity() {
                     let j = 0;
                     while (j <=8 ) {
                         j++;
                         let optionQuantity = document.createElement('option');
-                        optionQuantity.textContent = j;
+                        optionQuantity.textContent = element.quantity;
                         optionQuantity.value = j;
                         quantityTeddyCart.appendChild(optionQuantity);
                     }
                 }
-
+                console.log(panier.splice(0,0))
                 optionQuantity();
 
                 //Suppression//
@@ -141,7 +139,9 @@ function displayCart() {
                 function deleteProduct(){
                     let deleteButton = document.getElementById('deleteTeddyCard');
                     deleteButton.addEventListener('click', function(e){ 
-                        e.preventDefault();            
+                        let deleteTeddy = panier.splice(0,0);
+                        localStorage.setItem('monPanier', JSON.stringify(deleteTeddy));
+                        document.location.reload()
                     }) 
                 }
 
@@ -149,6 +149,8 @@ function displayCart() {
                                   
             });
         }
+
+       
         
         let information = document.createElement('section');
         div1.appendChild(information);

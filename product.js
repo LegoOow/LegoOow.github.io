@@ -125,25 +125,23 @@ fetch('http://localhost:3000/api/teddies/' + id)
                     document.location.reload()
                 //Ajout 1, si le produit existe//
                 } else {
-                        let productAlreadyAdded = false;
-                        let cartUp2 = panier.map(product => {       
-                            return {...product, quantity: product.quantity + 1}
-                        })
-                        cartUp2.forEach(response => {
-                            if(response.id === data._id)
-                            productAlreadyAdded = true;
-                            localStorage.setItem('monPanier', JSON.stringify(cartUp2));
-                            alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
-                            document.location.reload()
+                        let cartUp = panier.map(product => {
+                                            return {...product, quantity: product.quantity + 1}
+                                        })
+                        
+                        panier.forEach(response => {
+                            if(response.id === data._id) {
+                                localStorage.setItem('monPanier', JSON.stringify(cartUp));
+                                alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
+                                document.location.reload()
+                            } else {
+                                panier.push({id: data._id, name: data.name, price: data.price, quantity: 1});
+                                localStorage.setItem('monPanier', JSON.stringify(panier));
+                                alert('Vous avez ajouté ' + data.name + ' au panier');
+                                document.location.reload() 
+                            }
                         })
                     }
-                //Si le produit n'existe pas encore//
-                if(!productAlreadyAdded) {
-                    panier.push({id: data._id, name: data.name, price: data.price, quantity: 1});
-                    localStorage.setItem('monPanier', JSON.stringify(panier));
-                    alert('Vous avez ajouté ' + data.name + ' au panier');
-                    document.location.reload()          
-                }
             }) 
         }
         addCart();
