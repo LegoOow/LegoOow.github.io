@@ -123,41 +123,32 @@ fetch('http://localhost:3000/api/teddies/' + id)
                     localStorage.setItem('monPanier', JSON.stringify(panier));
                     alert('Vous avez ajouté ' + data.name + ' au panier');
                     document.location.reload()
-                //Ajout 1, si le produit existe//
-                } else {
-                        let cartUp = panier.map(product => {
-                                            return {...product, quantity: product.quantity + 1}
-                                        })
-                        
-                        panier.find(response => {
-                            if(response.id === data._id) {
-                                localStorage.setItem('monPanier', JSON.stringify(cartUp));
-                                alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
-                                document.location.reload()
+                } else if(product.name === 'Norbert') {
+                        let addCart = panier.map( product => {
+                            if(product.id === data._id) {
+                                return {...product, quantity: product.quantity + 1}
                             } else {
-                                panier.push({id: data._id, name: data.name, price: data.price, quantity: 1});
-                                localStorage.setItem('monPanier', JSON.stringify(panier));
-                                alert('Vous avez ajouté ' + data.name + ' au panier');
-                                document.location.reload() 
-                            }
+                                    return product
+                                }
                         })
-                    }
+                        localStorage.setItem('monPanier', JSON.stringify(addCart));
+                        alert('Vous avez ajouté ' + data.name + ' au panier2');
+                        document.location.reload()
+                    } else {
+                            let firstProduct = {id: data._id, name: data.name, price: data.price, quantity: 1}
+                            panier.push(firstProduct);
+                            localStorage.setItem('monPanier', JSON.stringify(panier));
+                            alert('Vous avez ajouté ' + data.name + ' au panier');
+                            document.location.reload()
+                        }
             }) 
         }
         addCart();
 })
     
-let cartUp2 = panier.map(product => {
-                        
-    if ( product.name === 'Norbert') {
-        return {...product, quantity: product.quantity + 1}
-    }
-})
-
-let cartUp = panier.map(product => {       
-    return {...product, quantity: product.quantity + 1}
-})
-
+panier.forEach(teddy => {
+        if(teddy.name === data.name) {}
+    })
 console.log(JSON.parse(localStorage.getItem('monPanier')));
     
 
