@@ -117,38 +117,40 @@ fetch('http://localhost:3000/api/teddies/' + id)
             button.addEventListener('click', function(e){ 
                 e.preventDefault();
                 //Premier produit//
+                let firstProduct = {id: data._id, name: data.name, price: data.price, quantity: 1}
+                let productAlreadyAdded = false;
+                let addCart = panier.map( product => {
+                    if(product.id === data._id) {
+                        productAlreadyAdded = true;
+                        alert('Vous avez ajouté ' + data.name + ' au panier2');
+                        return {...product, quantity: product.quantity + 1}
+                    } else {
+                        return product
+                        }
+                })
                 if (panier.length === 0) {
-                    let firstProduct = {id: data._id, name: data.name, price: data.price, quantity: 1}
                     panier.push(firstProduct);
                     localStorage.setItem('monPanier', JSON.stringify(panier));
-                    alert('Vous avez ajouté ' + data.name + ' au panier');
                     document.location.reload()
-                } else if(product.name === 'Norbert') {
-                        let addCart = panier.map( product => {
-                            if(product.id === data._id) {
-                                return {...product, quantity: product.quantity + 1}
-                            } else {
-                                    return product
-                                }
-                        })
+                } else {  
                         localStorage.setItem('monPanier', JSON.stringify(addCart));
-                        alert('Vous avez ajouté ' + data.name + ' au panier2');
+                        
                         document.location.reload()
-                    } else {
-                            let firstProduct = {id: data._id, name: data.name, price: data.price, quantity: 1}
-                            panier.push(firstProduct);
-                            localStorage.setItem('monPanier', JSON.stringify(panier));
-                            alert('Vous avez ajouté ' + data.name + ' au panier');
-                            document.location.reload()
-                        }
+                    }
+                    if (!productAlreadyAdded) {
+                        addCart.push(firstProduct);
+                        localStorage.setItem('monPanier', JSON.stringify(addCart));
+                        alert('Vous avez ajouté ' + data.name + ' au panier');
+                        document.location.reload()
+                    }
             }) 
         }
         addCart();
 })
     
-panier.forEach(teddy => {
-        if(teddy.name === data.name) {}
-    })
+
+      
+
 console.log(JSON.parse(localStorage.getItem('monPanier')));
     
 
