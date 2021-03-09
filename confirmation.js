@@ -1,12 +1,13 @@
+//Variables//
+
+let panier = JSON.parse(localStorage.getItem('monPanier'));
+console.log(panier);
+
 //Function//
 
 nav();
 confirmation();
 clearCart();
-
-//Variables//
-
-let panier = JSON.parse(localStorage.getItem('monPanier'));
 
 // Navigation //
 
@@ -36,7 +37,8 @@ function nav() {
     nav.appendChild(a0);
     nav.appendChild(a1);
     a0.appendChild(img0);
-}   
+}
+
 
 function confirmation() {
     
@@ -47,7 +49,12 @@ function confirmation() {
     let nOrder = document.createElement('p');
     let totalPriceOrder = document.createElement('p');
     let buttonReturnIndex = document.createElement('a');
+    let totalPrice = 0;
     
+    panier.forEach(product => {    
+        totalPrice += (product.price/100)*product.quantity;
+    })
+
     div1.className = 'row mx-auto';
     mainOrder.className = 'w-full bg-oniPink rounded my-1 p-5 col-12 text-center ';
     pOrder.textContent = 'Félécitation, votre commande à bien été pris en compte !';
@@ -55,7 +62,7 @@ function confirmation() {
     nOrder.className = 'fs-4';
     nOrder.textContent = 'Commande N°' + '###';
     totalPriceOrder.className = 'fs-4';
-    totalPriceOrder.textContent = 'Total de la commande :' + '###' + '€';
+    totalPriceOrder.textContent = 'Total de la commande :' + totalPrice + '€';
     buttonReturnIndex.id = 'btnClear'
     buttonReturnIndex.textContent = 'Retour à la page principale'
     buttonReturnIndex.className = 'btn btn-secondary text-white';
@@ -68,6 +75,9 @@ function confirmation() {
     mainOrder.appendChild(totalPriceOrder);
     mainOrder.appendChild(buttonReturnIndex);
 }
+
+
+
 
 function clearCart() {
     let btnClear = document.getElementById('btnClear');

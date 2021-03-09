@@ -1,12 +1,11 @@
+//Variables//
+
+let panier = JSON.parse(localStorage.getItem('monPanier'));
+
 //Function//
 
 nav();
 displayCart();
-
-
-//Variables//
-
-let panier = JSON.parse(localStorage.getItem('monPanier'));
 
 // Navigation //
 function nav() {
