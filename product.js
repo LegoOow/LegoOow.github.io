@@ -98,13 +98,12 @@ fetch('http://localhost:3000/api/teddies/' + id)
             div3.style = ('background-color:' + element);
         });
         
-        //Ajout produit//
         let a2 = document.createElement('a');
         div1.appendChild(a2);
 
         let addProduct= document.createElement('button');
         a2.appendChild(addProduct);
-        addProduct.className = 'w-100 text-center rounded mt-1'
+        addProduct.className = 'w-100 text-center rounded mt-1';
         addProduct.id = 'btnAddProduct';
 
         let teddyPrice= document.createElement('span');
@@ -116,25 +115,25 @@ fetch('http://localhost:3000/api/teddies/' + id)
             let button = document.getElementById('btnAddProduct');
             button.addEventListener('click', function(e){ 
                 e.preventDefault();
-                //Premier produit//
                 let firstProduct = {id: data._id, name: data.name, price: data.price, quantity: 1}
                 let productAlreadyAdded = false;
                 let addCart = panier.map( product => {
                     if(product.id === data._id) {
                         productAlreadyAdded = true;
-                        alert('Vous avez ajouté ' + data.name + ' au panier2');
+                        alert('Vous avez ajouté de nouveau ' + data.name + ' au panier');
                         return {...product, quantity: product.quantity + 1}
                     } else {
                         return product
                         }
                 })
+                //Premier produit//
                 if (panier.length === 0) {
                     panier.push(firstProduct);
                     localStorage.setItem('monPanier', JSON.stringify(panier));
                     document.location.reload()
+                //Ajout produit//
                 } else {  
                         localStorage.setItem('monPanier', JSON.stringify(addCart));
-                        
                         document.location.reload()
                     }
                     if (!productAlreadyAdded) {
@@ -146,7 +145,7 @@ fetch('http://localhost:3000/api/teddies/' + id)
             }) 
         }
         addCart();
-})
+    })
     
 
       

@@ -36,10 +36,9 @@ function nav() {
     nav.appendChild(a1);
     a0.appendChild(img0);
 }     
-        
 
 function displayCart() {
-
+    
     //panier//
     let div1 = document.createElement('div');
     container.appendChild(div1);
@@ -84,7 +83,7 @@ function displayCart() {
     addTeddyCart.appendChild(bodyCart);
             
 
-    if (panier === null) {
+    if (panier.length === 0) {
         let noProduct = document.createElement('tr');
         order.appendChild(noProduct);
         noProduct.textContent = 'Aucun produit';
@@ -106,7 +105,7 @@ function displayCart() {
                 let priceTeddyCart = document.createElement('td');
                 priceTeddyCart.className = 'pl-3';
                 product.appendChild(priceTeddyCart);
-                priceTeddyCart.textContent = element.price/100 + '€';
+                priceTeddyCart.textContent = (element.price/100)*element.quantity + '€';
                     
                 //Quantité//
 
@@ -126,20 +125,20 @@ function displayCart() {
                         quantityTeddyCart.appendChild(optionQuantity);
                     }
                 }
-                console.log(panier.splice(0,0))
                 optionQuantity();
 
                 //Suppression//
                 let deleteTeddyCart = document.createElement('button');
                 deleteTeddyCart.className = 'btn btn-secondary ml-3 mt-1';
-                deleteTeddyCart.id = 'deleteTeddyCard';
+                deleteTeddyCart.id = element.id;
                 deleteTeddyCart.textContent = 'X';
                 product.appendChild(deleteTeddyCart);
 
                 function deleteProduct(){
-                    let deleteButton = document.getElementById('deleteTeddyCard');
-                    deleteButton.addEventListener('click', function(e){ 
-                        let deleteTeddy = panier.splice(0,0);
+                    let deleteButton = document.getElementById(element.id);
+                    deleteButton.addEventListener('click', function(e){
+                        e.preventDefault();
+                        let deleteTeddy = panier.filter(product => product.id !== element.id)                              
                         localStorage.setItem('monPanier', JSON.stringify(deleteTeddy));
                         document.location.reload()
                     }) 
