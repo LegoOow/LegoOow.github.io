@@ -125,6 +125,7 @@ function displayCart() {
                         quantityTeddyCart.appendChild(optionQuantity);
                     }
                 }
+
                 optionQuantity();
 
                 //Suppression//
@@ -144,13 +145,35 @@ function displayCart() {
                     }) 
                 }
 
-                deleteProduct()
-                                  
+                deleteProduct()       
+                                
             });
         }
-
-       
         
+        //Prix Total//
+
+        function totalOrder() {
+            let totalPrice = document.createElement('div');
+            order.appendChild(totalPrice);
+            totalPrice.className = '';
+
+            let titleTotalPrice = document.createElement('h5');
+            totalPrice.appendChild(titleTotalPrice);
+            titleTotalPrice.textContent = 'Prix Total';
+            let totalPriceOrder = 0;
+
+            panier.forEach(product => {    
+                totalPriceOrder += (product.price/100)*product.quantity;
+            })
+
+            let displayTotalPrice = document.createElement('p');
+            titleTotalPrice.appendChild(displayTotalPrice);
+            displayTotalPrice.textContent = totalPriceOrder + '€';
+        }
+
+        totalOrder();
+
+        //Information//
         let information = document.createElement('section');
         div1.appendChild(information);
         information.className = 'col-12 col-lg-6 bg-oniPink rounded mt-2 ml-lg-5 p-5';
