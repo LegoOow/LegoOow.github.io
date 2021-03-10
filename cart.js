@@ -175,6 +175,7 @@ function displayCart() {
         //Information//
         let information = document.createElement('section');
         div1.appendChild(information);
+        information.id = 'formulaire';
         information.className = 'col-12 col-lg-6 bg-oniPink rounded mt-2 ml-lg-5 p-5';
 
         let titleInformation = document.createElement('h5');
@@ -240,7 +241,7 @@ function displayCart() {
         zipCodeInformation.name = 'zipcode';
         zipCodeInformation.id = 'zipcode';
         zipCodeInformation.className = 'input rounded';
-        zipCodeInformation.pattern='[0-9]{,5}';
+        zipCodeInformation.pattern='[0-9]{5}';
         zipCodeInformation.required = 'required';
 
         let labelTownInformation = document.createElement('h6');
@@ -250,8 +251,8 @@ function displayCart() {
         let townInformation = document.createElement('input');
         information.appendChild(townInformation);
         townInformation.type = 'text';
-        townInformation.name = 'town';
-        townInformation.id = 'town';
+        townInformation.name = 'city';
+        townInformation.id = 'city';
         townInformation.className = 'input rounded';
         townInformation.required = 'required';
 
@@ -260,7 +261,59 @@ function displayCart() {
         validCart.className = 'btn btn-secondary text-white mt-3';
         validCart.textContent = 'Procéder au paiement';
         validCart.href = 'confirmation.html';
-        
+
+        //Création de l'objet pour l'envoi au serveur//
+        objectOrder = {
+            contact: {},
+            products: [],
+        };
+
+        //Produit(s)//
+        panier.forEach((idArticle) => objectOrder.products.push(idArticle.id));
+
+        //Contact//
+        function getFormCustomerOrder () {
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let email = document.getElementById("email").value;
+            let address = document.getElementById("address").value;
+            let zipCode = document.getElementById("zipcode").value;
+            let city = document.getElementById("city").value;
+
+            objectOrder.contact = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                address: address,
+                zipCode: zipCode,
+                city: city,
+            };
+            contact = objectOrder.contact;
+            products = objectOrder.products;
+            console.log(products);
+            console.log(objectOrder);
+            console.log(contact);
+            localStorage.setItem("contact", JSON.stringify(contact));
+            localStorage.setItem("objectOrder", JSON.stringify(objectOrder));
+        }
+        //Envoi des données au localstorage//
+        function sendFormCustomerOrder() {
+            fetch('http://localhost:3000/api/cameras/order', {
+                method: 'POST',
+                body: JSON.stringify(objectOrder),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            })
+                .then(response => {
+                    if (response.status == 201) {
+                        window.location.href = 'confirmation.html';
+                        let confirmation = JSON.parse(this.responseText);
+                        sessionStorage.setItem('order', JSON.stringify(confirmation));
+                    }
+                })
+             .catch(err => console.log(err)); 
+        }
 }
 
 

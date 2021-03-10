@@ -50,7 +50,7 @@ function confirmation() {
     let totalPriceOrder = document.createElement('p');
     let buttonReturnIndex = document.createElement('a');
     let totalPrice = 0;
-    
+
     panier.forEach(product => {    
         totalPrice += (product.price/100)*product.quantity;
     })
