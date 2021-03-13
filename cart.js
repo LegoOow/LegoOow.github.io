@@ -23,7 +23,7 @@ function nav() {
     a0.href = 'index.html';
     a1.className = 'nav-link text-black';
     a1.href = 'cart.html';
-    a1.textContent = 'Panier';
+    a1.textContent = "Panier (" + `${panier.length}` + ")";
     img0.className = 'bg-oniPink';
     img0.src = 'images/logo.png';
     img0.alt = 'Logo Orinoco';
@@ -173,94 +173,130 @@ function displayCart() {
         totalOrder();
 
         //Information//
-        let information = document.createElement('section');
+        let information = document.createElement('form');
         div1.appendChild(information);
         information.id = 'formulaire';
         information.className = 'col-12 col-lg-6 bg-oniPink rounded mt-2 ml-lg-5 p-5';
 
         let titleInformation = document.createElement('h5');
         information.appendChild(titleInformation);
-        titleInformation.classList = 'text-center';
+        titleInformation.className = 'text-center';
         titleInformation.textContent = 'Vos coordonnées pour la commande';
+        
+            //Prenom//
+            let groupPrenomInformation= document.createElement('div');
+            groupPrenomInformation.className = 'form-group row';
+            information.appendChild(groupPrenomInformation);
 
-        let labelPrenomInformation = document.createElement('h6');
-        information.appendChild(labelPrenomInformation);
-        labelPrenomInformation.textContent = 'Prénom';
+            let labelPrenomInformation = document.createElement('label');
+            groupPrenomInformation.appendChild(labelPrenomInformation);
+            labelPrenomInformation.textContent = 'Prénom';
 
-        let prenomInformation = document.createElement('input');
-        information.appendChild(prenomInformation);
-        prenomInformation.type = 'text';
-        prenomInformation.name = 'firstname';
-        prenomInformation.id = 'firstname';
-        prenomInformation.className = 'input rounded';
-        prenomInformation.required = 'required';
+            let prenomInformation = document.createElement('input');
+            groupPrenomInformation.appendChild(prenomInformation);
+            prenomInformation.type = 'text';
+            prenomInformation.name = 'firstname';
+            prenomInformation.id = 'firstname';
+            prenomInformation.className = 'input rounded';
+            prenomInformation.pattern = "/^[a-zA-Z ,.'-]+$/";
+            prenomInformation.required = 'required';
 
-        let labelNomInformation = document.createElement('h6');
-        information.appendChild(labelNomInformation);
-        labelNomInformation.textContent = 'Nom ';
+            //Nom//
+            let groupNomInformation= document.createElement('div');
+            groupNomInformation.className = 'form-group row';
+            information.appendChild(groupNomInformation);
 
-        let nomInformation = document.createElement('input');
-        information.appendChild(nomInformation);
-        nomInformation.type = 'text';
-        nomInformation.name = 'lastname';
-        nomInformation.id = 'lastname';
-        nomInformation.className = 'input rounded';
-        nomInformation.required = 'required';
+            let labelNomInformation = document.createElement('label');
+            groupNomInformation.appendChild(labelNomInformation);
+            labelNomInformation.textContent = 'Nom ';
 
-        let labelEmailInformation = document.createElement('h6');
-        information.appendChild(labelEmailInformation);
-        labelEmailInformation.textContent = 'email';
+            let nomInformation = document.createElement('input');
+            groupNomInformation.appendChild(nomInformation);
+            nomInformation.type = 'text';
+            nomInformation.name = 'lastname';
+            nomInformation.id = 'lastname';
+            nomInformation.className = 'input rounded';
+            nomInformation.pattern = "/^[a-zA-Z ,.'-]+$/";
+            nomInformation.required = 'required';
 
-        let emailInformation = document.createElement('input');
-        information.appendChild(emailInformation);
-        emailInformation.type = 'email';
-        emailInformation.name = 'email';
-        emailInformation.id = 'email';
-        emailInformation.className = 'input rounded';
-        emailInformation.required = 'required';
+            //email//
+            let groupEmailInformation= document.createElement('div');
+            groupEmailInformation.className = 'form-group row';
+            information.appendChild(groupEmailInformation);
 
-        let labelAdressInformation = document.createElement('h6');
-        information.appendChild(labelAdressInformation);
-        labelAdressInformation.textContent = 'Adresse ';
+            let labelEmailInformation = document.createElement('label');
+            groupEmailInformation.appendChild(labelEmailInformation);
+            labelEmailInformation.textContent = 'email';
 
-        let adressInformation = document.createElement('input');
-        information.appendChild(adressInformation);
-        adressInformation.type = 'text';
-        adressInformation.name = 'adress';
-        adressInformation.id = 'adress';
-        adressInformation.className = 'input rounded';
-        adressInformation.required = 'required';
+            let emailInformation = document.createElement('input');
+            groupEmailInformation.appendChild(emailInformation);
+            emailInformation.type = 'email';
+            emailInformation.name = 'email';
+            emailInformation.id = 'email';
+            emailInformation.pattern = "/[\w\.]+[\w]@[\w]+\.[\w]/";
+            emailInformation.className = 'input rounded';
+            emailInformation.required = 'required';
 
-        let labelZipCodeInformation = document.createElement('h6');
-        information.appendChild(labelZipCodeInformation);
-        labelZipCodeInformation.textContent = 'Code Postal ';
+            //Adresse//
+            let groupAdressInformation= document.createElement('div');
+            groupAdressInformation.className = 'form-group row';
+            information.appendChild(groupAdressInformation);
 
-        let zipCodeInformation = document.createElement('input');
-        information.appendChild(zipCodeInformation);
-        zipCodeInformation.type = 'text';
-        zipCodeInformation.name = 'zipcode';
-        zipCodeInformation.id = 'zipcode';
-        zipCodeInformation.className = 'input rounded';
-        zipCodeInformation.pattern='[0-9]{5}';
-        zipCodeInformation.required = 'required';
+            let labelAdressInformation = document.createElement('label');
+            groupAdressInformation.appendChild(labelAdressInformation);
+            labelAdressInformation.textContent = 'Adresse ';
 
-        let labelTownInformation = document.createElement('h6');
-        information.appendChild(labelTownInformation);
-        labelTownInformation.textContent = 'Ville ';
+            let addressInformation = document.createElement('input');
+            groupAdressInformation.appendChild(addressInformation);
+            addressInformation.type = 'text';
+            addressInformation.name = 'address';
+            addressInformation.id = 'address';
+            addressInformation.className = 'input rounded';
+            addressInformation.pattern = "/[0-9a-zA-Z]{1,3}[a-z ,.'-]+$/;"
+            addressInformation.required = 'required';
 
-        let townInformation = document.createElement('input');
-        information.appendChild(townInformation);
-        townInformation.type = 'text';
-        townInformation.name = 'city';
-        townInformation.id = 'city';
-        townInformation.className = 'input rounded';
-        townInformation.required = 'required';
+            //Code postal//
+            let groupZipcodeInformation= document.createElement('div');
+            groupZipcodeInformation.className = 'form-group row';
+            information.appendChild(groupZipcodeInformation);
+            
+            let labelZipCodeInformation = document.createElement('label');
+            groupZipcodeInformation.appendChild(labelZipCodeInformation);
+            labelZipCodeInformation.textContent = 'Code Postal ';
+
+            let zipCodeInformation = document.createElement('input');
+            groupZipcodeInformation.appendChild(zipCodeInformation);
+            zipCodeInformation.type = 'text';
+            zipCodeInformation.name = 'zipcode';
+            zipCodeInformation.id = 'zipcode';
+            zipCodeInformation.className = 'input rounded';
+            zipCodeInformation.pattern='[0-9]{5}';
+            zipCodeInformation.required = 'required';
+
+            //Ville//
+            let groupCityInformation= document.createElement('div');
+            groupCityInformation.className = 'form-group row';
+            information.appendChild(groupCityInformation);
+
+            let labelCityInformation = document.createElement('label');
+            groupCityInformation.appendChild(labelCityInformation);
+            labelCityInformation.textContent = 'Ville ';
+
+            let cityInformation = document.createElement('input');
+            groupCityInformation.appendChild(cityInformation);
+            cityInformation.type = 'text';
+            cityInformation.name = 'city';
+            cityInformation.id = 'city';
+            cityInformation.className = 'input rounded';
+            cityInformation.pattern = "/[0-9a-zA-Z]{1,3}[a-z ,.'-]+$/";
+            cityInformation.required = 'required';
 
         let validCart = document.createElement('a');
         information.appendChild(validCart);
+        validCart.id = 'validcart';
         validCart.className = 'btn btn-secondary text-white mt-3';
         validCart.textContent = 'Procéder au paiement';
-        validCart.href = 'confirmation.html';
+
 
         //Création de l'objet pour l'envoi au serveur//
         objectOrder = {
@@ -270,11 +306,12 @@ function displayCart() {
 
         //Produit(s)//
         panier.forEach((idArticle) => objectOrder.products.push(idArticle.id));
+        console.log(objectOrder);
 
         //Contact//
         function getFormCustomerOrder () {
-            let firstName = document.getElementById("firstName").value;
-            let lastName = document.getElementById("lastName").value;
+            let firstName = document.getElementById("firstname").value;
+            let lastName = document.getElementById("lastname").value;
             let email = document.getElementById("email").value;
             let address = document.getElementById("address").value;
             let zipCode = document.getElementById("zipcode").value;
@@ -296,9 +333,16 @@ function displayCart() {
             localStorage.setItem("contact", JSON.stringify(contact));
             localStorage.setItem("objectOrder", JSON.stringify(objectOrder));
         }
+
+        //Vérification du formulaire//
+        let formulaire = document.getElementById("formulaire")
+                formulaire.addEventListener("submit", function (getFormCustomerOrder) {
+                    getFormCustomerOrder.preventDefault();
+                });
+
         //Envoi des données au localstorage//
         function sendFormCustomerOrder() {
-            fetch('http://localhost:3000/api/cameras/order', {
+            fetch('http://localhost:3000/api/teddies/order', {
                 method: 'POST',
                 body: JSON.stringify(objectOrder),
                 headers: {
@@ -307,12 +351,105 @@ function displayCart() {
             })
                 .then(response => {
                     if (response.status == 201) {
-                        window.location.href = 'confirmation.html';
+                        window.location.href = "confirmation.html";
                         let confirmation = JSON.parse(this.responseText);
                         sessionStorage.setItem('order', JSON.stringify(confirmation));
                     }
                 })
              .catch(err => console.log(err)); 
+        }
+
+        //Envoi des données au click + contrôle des données//
+
+        let validForm = document.getElementById('validcart');
+        validForm.addEventListener("click", control);
+        function control(event) {
+                if(validation(event)) {
+                    getFormCustomerOrder();
+                    sendFormCustomerOrder();
+                }
+        }
+
+        //Contrôle formulaire//
+        function validation(event) {
+
+            let firstName = document.getElementById('firstname');
+            let lastName = document.getElementById('lastname');
+            let address = document.getElementById('address');
+            let city = document.getElementById('city');
+            let email = document.getElementById('email');
+            let zipcode = document.getElementById('zipcode');
+
+            //Si le champ est vide
+            if (firstName.validity.valueMissing) {
+                event.preventDefault();
+                firstName.textContent = "Prénom manquant";
+                firstName.style.color = "red";
+                //Si le format de données est incorrect
+            } else if (firstName.value == false) {
+                event.preventDefault();
+                firstName.textContent = "Format incorrect";
+                firstName.style.color = "orange";
+                //Si le champ est vide
+            } else if (lastName.validity.valueMissing) {
+                event.preventDefault();
+                lastName.textContent = "Nom manquant";
+                lastName.style.color = "red";
+                //Si le format de données est incorrect
+            } else if (lastName.value == false) {
+                event.preventDefault();
+                lastName.textContent = "Format incorrect";
+                lastName.style.color = "orange";
+                //Si le champ est vide
+            } else if (address.validity.valueMissing) {
+                event.preventDefault();
+                address.textContent = "Adresse manquante";
+                address.style.color = "red";
+                //Si le format de données est incorrect
+            } else if (address.value == false) {
+                event.preventDefault();
+                address.textContent = "Format incorrect";
+                address.style.color = "orange";
+                //Si le champ est vide
+            } else if (zipcode.validity.valueMissing) {
+                event.preventDefault();
+                zipcode.textContent = "Code postal manquant";
+                zipcode.style.color = "red";
+                //Si le format de données est incorrect
+            } else if (zipcode.value == false) {
+                event.preventDefault();
+                zipcode.textContent = "Format incorrect";
+                zipcode.style.color = "orange";
+                //Si le champ est vide
+            } else if (city.validity.valueMissing) {
+                event.preventDefault();
+                city.textContent = "Ville manquante";
+                city.style.color = "red";
+                //Si le format de données est incorrect
+            } else if (city.value == false) {
+                event.preventDefault();
+                city.textContent = "Format incorrect";
+                city.style.color = "orange";
+                //Si le champ est vide
+            } else if (email.validity.valueMissing) {
+                event.preventDefault();
+                email.textContent = "Courriel manquant";
+                email.style.color = "red";
+                //Si le format de données est incorrect
+            } else if (email.value == false) {
+                event.preventDefault();
+                email.textContent = "Format incorrect";
+                email.style.color = "orange";
+            } else if (panier == null) {
+                event.preventDefault();
+                alert(
+                "Votre panier est vide! Pour passer commande, il vous faut au moins un article ;)"
+                );
+                return false;
+            } else {
+                // tous les else if renvoient return false
+                return true;
+            }
         }
 }
 

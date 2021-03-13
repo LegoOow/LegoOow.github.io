@@ -26,7 +26,7 @@ function nav() {
     a0.href = 'index.html';
     a1.className = 'nav-link text-black';
     a1.href = 'cart.html';
-    a1.textContent = 'Panier';
+    a1.textContent = "Panier (" + `${panier.length}` + ")";
     img0.className = 'bg-oniPink';
     img0.src = 'images/logo.png';
     img0.alt = 'Logo Orinoco';
@@ -57,7 +57,7 @@ function confirmation() {
 
     div1.className = 'row mx-auto';
     mainOrder.className = 'w-full bg-oniPink rounded my-1 p-5 col-12 text-center ';
-    pOrder.textContent = 'Félécitation, votre commande à bien été pris en compte !';
+    pOrder.textContent = 'Félicitation, votre commande à bien été pris en compte !';
     pOrder.className = 'fs-1';
     nOrder.className = 'fs-4';
     nOrder.textContent = 'Commande N°' + '###';
@@ -66,7 +66,6 @@ function confirmation() {
     buttonReturnIndex.id = 'btnClear'
     buttonReturnIndex.textContent = 'Retour à la page principale'
     buttonReturnIndex.className = 'btn btn-secondary text-white';
-    buttonReturnIndex.href = 'index.html';
 
     container.appendChild(div1);
     div1.appendChild(mainOrder);
@@ -84,7 +83,7 @@ function clearCart() {
             btnClear.addEventListener('click', function(e){ 
                 e.preventDefault();  
                 localStorage.clear();
-                document.location.reload()
+                window.location.href = "index.html";
             }) 
 }
 

@@ -11,6 +11,7 @@ function nav() {
     const a0 = document.createElement('a');
     const a1 = document.createElement('a')
     const img0 = document.createElement('img');
+    let panier = JSON.parse(localStorage.getItem('monPanier'));
     
     div0.className = 'row';
     nav.className = 'col navbar navbar-expand-xs bg-oniPink rounded m-3';
@@ -18,7 +19,7 @@ function nav() {
     a0.href = 'index.html';
     a1.className = 'nav-link text-black';
     a1.href = 'cart.html';
-    a1.textContent = 'Panier';
+    a1.textContent = "Panier";
     img0.className = 'bg-oniPink';
     img0.src = 'images/logo.png';
     img0.alt = 'Logo Orinoco';
