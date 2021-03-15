@@ -2,6 +2,8 @@
 
 let panier = JSON.parse(localStorage.getItem('monPanier'));
 console.log(panier);
+let order = JSON.parse(sessionStorage.getItem('order'));
+console.log(order);
 
 //Function//
 

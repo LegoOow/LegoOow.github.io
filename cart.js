@@ -360,7 +360,6 @@ function displayCart() {
         }
 
         //Envoi des données au click + contrôle des données//
-
         let validForm = document.getElementById('validcart');
         validForm.addEventListener("click", control);
         function control(event) {
@@ -369,24 +368,42 @@ function displayCart() {
                     sendFormCustomerOrder();
                 }
         }
-
+    
         //Contrôle formulaire//
         function validation(event) {
 
             let firstName = document.getElementById('firstname');
-            let lastName = document.getElementById('lastname');
-            let address = document.getElementById('address');
-            let city = document.getElementById('city');
-            let email = document.getElementById('email');
-            let zipcode = document.getElementById('zipcode');
+            let firstNameOk = /^[a-zA-Z ,.'-]+$/;
 
+            let lastName = document.getElementById('lastname');
+            let lastNameOk = /^[a-zA-Z ,.'-]+$/;
+
+            let address = document.getElementById('address');
+            let addressOk = /[0-9a-zA-Z]{1,3}[a-z ,.'-]+$/;
+
+            let city = document.getElementById('city');
+            let cityOk = /[0-9a-zA-Z]{1,3}[a-z ,.'-]+$/;
+
+            let email = document.getElementById('email');
+            let emailOk = /[\w\.]+[\w]@[\w]+\.[\w]/;
+
+            let zipCode = document.getElementById('zipcode');
+            let zipCodeOk = /[0-9]{5}/;
+
+            console.log(firstNameOk.test(firstName.value));
+            console.log(lastNameOk.test(lastName.value));
+            console.log(addressOk.test(address.value))
+            console.log(zipCodeOk.test(zipCode.value))
+            console.log(cityOk.test(city.value))
+            console.log(emailOk.test(email.value))
+    
             //Si le champ est vide
             if (firstName.validity.valueMissing) {
                 event.preventDefault();
                 firstName.textContent = "Prénom manquant";
                 firstName.style.color = "red";
                 //Si le format de données est incorrect
-            } else if (firstName.value == false) {
+            } else if (firstNameOk.test(firstName.value) == false) {
                 event.preventDefault();
                 firstName.textContent = "Format incorrect";
                 firstName.style.color = "orange";
@@ -396,7 +413,7 @@ function displayCart() {
                 lastName.textContent = "Nom manquant";
                 lastName.style.color = "red";
                 //Si le format de données est incorrect
-            } else if (lastName.value == false) {
+            } else if (lastNameOk.test(lastName.value) == false) {
                 event.preventDefault();
                 lastName.textContent = "Format incorrect";
                 lastName.style.color = "orange";
@@ -406,7 +423,7 @@ function displayCart() {
                 address.textContent = "Adresse manquante";
                 address.style.color = "red";
                 //Si le format de données est incorrect
-            } else if (address.value == false) {
+            } else if (addressOk.test(address.value) == false) {
                 event.preventDefault();
                 address.textContent = "Format incorrect";
                 address.style.color = "orange";
@@ -416,17 +433,17 @@ function displayCart() {
                 zipcode.textContent = "Code postal manquant";
                 zipcode.style.color = "red";
                 //Si le format de données est incorrect
-            } else if (zipcode.value == false) {
+            } else if (zipCodeOk.test(zipCode.value) == false) {
                 event.preventDefault();
-                zipcode.textContent = "Format incorrect";
-                zipcode.style.color = "orange";
+                zipCode.textContent = "Format incorrect";
+                zipCode.style.color = "orange";
                 //Si le champ est vide
             } else if (city.validity.valueMissing) {
                 event.preventDefault();
                 city.textContent = "Ville manquante";
                 city.style.color = "red";
                 //Si le format de données est incorrect
-            } else if (city.value == false) {
+            } else if (cityOk.test(city.value) == false) {
                 event.preventDefault();
                 city.textContent = "Format incorrect";
                 city.style.color = "orange";
@@ -436,10 +453,11 @@ function displayCart() {
                 email.textContent = "Courriel manquant";
                 email.style.color = "red";
                 //Si le format de données est incorrect
-            } else if (email.value == false) {
+            } else if (emailOk.test(email.value) == false) {
                 event.preventDefault();
                 email.textContent = "Format incorrect";
                 email.style.color = "orange";
+                console.log(emailOk.value)
             } else if (panier == null) {
                 event.preventDefault();
                 alert(
@@ -451,6 +469,8 @@ function displayCart() {
                 return true;
             }
         }
+        
+
 }
 
 
