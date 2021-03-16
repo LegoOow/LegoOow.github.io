@@ -221,7 +221,7 @@ function displayCart() {
         
             //Prenom//
             let groupPrenomInformation= document.createElement('div');
-            groupPrenomInformation.className = 'form-group row';
+            groupPrenomInformation.className = 'form-group';
             information.appendChild(groupPrenomInformation);
 
             let labelPrenomInformation = document.createElement('label');
@@ -239,7 +239,7 @@ function displayCart() {
 
             //Nom//
             let groupNomInformation= document.createElement('div');
-            groupNomInformation.className = 'form-group row';
+            groupNomInformation.className = 'form-group';
             information.appendChild(groupNomInformation);
 
             let labelNomInformation = document.createElement('label');
@@ -257,7 +257,7 @@ function displayCart() {
 
             //email//
             let groupEmailInformation= document.createElement('div');
-            groupEmailInformation.className = 'form-group row';
+            groupEmailInformation.className = 'form-group';
             information.appendChild(groupEmailInformation);
 
             let labelEmailInformation = document.createElement('label');
@@ -275,7 +275,7 @@ function displayCart() {
 
             //Adresse//
             let groupAdressInformation= document.createElement('div');
-            groupAdressInformation.className = 'form-group row';
+            groupAdressInformation.className = 'form-group';
             information.appendChild(groupAdressInformation);
 
             let labelAdressInformation = document.createElement('label');
@@ -293,7 +293,7 @@ function displayCart() {
 
             //Code postal//
             let groupZipcodeInformation= document.createElement('div');
-            groupZipcodeInformation.className = 'form-group row';
+            groupZipcodeInformation.className = 'form-group';
             information.appendChild(groupZipcodeInformation);
             
             let labelZipCodeInformation = document.createElement('label');
@@ -311,7 +311,7 @@ function displayCart() {
 
             //Ville//
             let groupCityInformation= document.createElement('div');
-            groupCityInformation.className = 'form-group row';
+            groupCityInformation.className = 'form-group';
             information.appendChild(groupCityInformation);
 
             let labelCityInformation = document.createElement('label');
@@ -436,63 +436,51 @@ function displayCart() {
             //Si le champ est vide
             if (firstName.validity.valueMissing) {
                 event.preventDefault();
-                firstName.textContent = "Prénom manquant";
-                firstName.style.color = "red";
+                firstName.className= "bg-warning";
                 //Si le format de données est incorrect
             } else if (firstNameOk.test(firstName.value) == false) {
                 event.preventDefault();
-                firstName.textContent = "Format incorrect";
-                firstName.style.color = "orange";
+                firstName.className= "bg-warning";
                 //Si le champ est vide
             } else if (lastName.validity.valueMissing) {
                 event.preventDefault();
-                lastName.textContent = "Nom manquant";
-                lastName.style.color = "red";
+                lastName.className= "bg-warning";
                 //Si le format de données est incorrect
             } else if (lastNameOk.test(lastName.value) == false) {
                 event.preventDefault();
-                lastName.textContent = "Format incorrect";
-                lastName.style.color = "orange";
+                lastName.className= "bg-warning";
                 //Si le champ est vide
             } else if (address.validity.valueMissing) {
                 event.preventDefault();
-                address.textContent = "Adresse manquante";
-                address.style.color = "red";
+                address.className= "bg-warning";
                 //Si le format de données est incorrect
             } else if (addressOk.test(address.value) == false) {
                 event.preventDefault();
-                address.textContent = "Format incorrect";
-                address.style.color = "orange";
+                address.className= "bg-warning";
                 //Si le champ est vide
             } else if (zipcode.validity.valueMissing) {
                 event.preventDefault();
-                zipcode.textContent = "Code postal manquant";
-                zipcode.style.color = "red";
+                zipcode.className= "bg-warning";
                 //Si le format de données est incorrect
             } else if (zipCodeOk.test(zipCode.value) == false) {
                 event.preventDefault();
-                zipCode.textContent = "Format incorrect";
-                zipCode.style.color = "orange";
+                zipCode.className= "bg-warning";
                 //Si le champ est vide
             } else if (city.validity.valueMissing) {
                 event.preventDefault();
-                city.textContent = "Ville manquante";
-                city.style.color = "red";
+                city.className= "bg-warning";
                 //Si le format de données est incorrect
             } else if (cityOk.test(city.value) == false) {
                 event.preventDefault();
-                city.textContent = "Format incorrect";
-                city.style.color = "orange";
+                city.className= "bg-warning";
                 //Si le champ est vide
             } else if (email.validity.valueMissing) {
                 event.preventDefault();
-                email.textContent = "Courriel manquant";
-                email.style.color = "red";
+                email.className= "bg-warning";
                 //Si le format de données est incorrect
             } else if (emailOk.test(email.value) == false) {
                 event.preventDefault();
-                email.textContent = "Format incorrect";
-                email.style.color = "orange";
+                email.className= "bg-warning";
                 console.log(emailOk.value)
             } else if (panier == null) {
                 event.preventDefault();
