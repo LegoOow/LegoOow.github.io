@@ -13,7 +13,6 @@ else {
 };
 let panier = JSON.parse(localStorage.getItem('monPanier'));
 
-
 const params = new URLSearchParams(document.location.search);
 const id = params.get('id');
 

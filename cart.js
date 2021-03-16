@@ -89,7 +89,7 @@ function displayCart() {
 
     } else {
             panier.forEach(element => {
-                    
+                
                 //Produit//
                 let product = document.createElement('tr');
                 bodyCart.appendChild(product);
@@ -108,24 +108,60 @@ function displayCart() {
                     
                 //Quantité//
 
-                let quantityTeddyCart = document.createElement('select');
-                quantityTeddyCart.className = 'ml-3';
+                let quantityTeddyCart = document.createElement('td');
+                quantityTeddyCart.className = 'text-center';
                 quantityTeddyCart.name = 'quantity';
+                quantityTeddyCart.textContent = element.quantity;
                 quantityTeddyCart.id = 'selectQuantity';
                 product.appendChild(quantityTeddyCart);
 
-                function optionQuantity() {
-                    let j = 0;
-                    while (j <=8 ) {
-                        j++;
-                        let optionQuantity = document.createElement('option');
-                        optionQuantity.textContent = element.quantity;
-                        optionQuantity.value = j;
-                        quantityTeddyCart.appendChild(optionQuantity);
-                    }
+                function optionQuantityMore() {
+                    let optionQuantityMore = document.createElement('button');
+                    optionQuantityMore.textContent = "+";
+                    optionQuantityMore.className= 'ml-1 rounded'
+                    quantityTeddyCart.appendChild(optionQuantityMore);
+                    optionQuantityMore.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        let addCart = panier.map( product => {
+                            if(product.id === element.id) {
+                                return {...product, quantity: product.quantity + 1}
+                            } else {
+                                return product
+                                }
+                        })
+                            localStorage.setItem('monPanier', JSON.stringify(addCart));
+                            document.location.reload()
+                    })
                 }
 
-                optionQuantity();
+                function optionQuantityLess() {
+                    let optionQuantityLess = document.createElement('button');
+                    optionQuantityLess.textContent = "-";
+                    optionQuantityLess.className= 'ml-1 rounded'
+                    quantityTeddyCart.appendChild(optionQuantityLess);
+                    if(element.quantity >= 1)
+                    optionQuantityLess.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        let lessCart = panier.map( product => {
+                            if(product.id === element.id) {
+                                return {...product, quantity: product.quantity - 1}
+                            } else {
+                                return product
+                                }
+                        })
+                            localStorage.setItem('monPanier', JSON.stringify(lessCart));
+                            document.location.reload()
+                    })
+                }
+
+                if(element.quantity == 0) {
+                    let deleteTeddy = panier.filter(product => product.id !== element.id)                              
+                        localStorage.setItem('monPanier', JSON.stringify(deleteTeddy));
+                        document.location.reload()
+                } else {
+                        optionQuantityMore()
+                        optionQuantityLess()
+                    }
 
                 //Suppression//
                 let deleteTeddyCart = document.createElement('button');
@@ -469,8 +505,6 @@ function displayCart() {
                 return true;
             }
         }
-        
-
 }
 
 
