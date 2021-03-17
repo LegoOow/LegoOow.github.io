@@ -385,13 +385,12 @@ function displayCart() {
                     'Content-type': 'application/json; charset=UTF-8'
                 }
             })
-                .then(response => {
-                    if (response.status == 201) {
-                        window.location.href = "confirmation.html";
-                        let confirmation = JSON.parse(this.responseText);
-                        sessionStorage.setItem('order', JSON.stringify(confirmation));
-                    }
-                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    sessionStorage.setItem("orderId", JSON.stringify(data.orderId))
+                    window.location.href = "confirmation.html";
+                })   
              .catch(err => console.log(err)); 
         }
 

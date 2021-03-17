@@ -2,8 +2,8 @@
 
 let panier = JSON.parse(localStorage.getItem('monPanier'));
 console.log(panier);
-let order = JSON.parse(sessionStorage.getItem('order'));
-console.log(order);
+let orderId = JSON.parse(sessionStorage.getItem('orderId'));
+console.log(orderId);
 
 //Function//
 
@@ -62,7 +62,7 @@ function confirmation() {
     pOrder.textContent = 'Félicitation, votre commande à bien été pris en compte !';
     pOrder.className = 'fs-1';
     nOrder.className = 'fs-4';
-    nOrder.textContent = 'Commande N°' + '###';
+    nOrder.textContent = 'Commande N°' + orderId;
     totalPriceOrder.className = 'fs-4';
     totalPriceOrder.textContent = 'Total de la commande :' + totalPrice + '€';
     buttonReturnIndex.id = 'btnClear'
