@@ -435,51 +435,51 @@ function displayCart() {
             //Si le champ est vide
             if (firstName.validity.valueMissing) {
                 event.preventDefault();
-                firstName.className= "bg-warning";
+                firstName.className= "border-red";
                 //Si le format de données est incorrect
             } else if (firstNameOk.test(firstName.value) == false) {
                 event.preventDefault();
-                firstName.className= "bg-warning";
+                firstName.className= "border-red";
                 //Si le champ est vide
             } else if (lastName.validity.valueMissing) {
                 event.preventDefault();
-                lastName.className= "bg-warning";
+                lastName.className= "border-red";
                 //Si le format de données est incorrect
             } else if (lastNameOk.test(lastName.value) == false) {
                 event.preventDefault();
-                lastName.className= "bg-warning";
+                lastName.className= "border-red";
                 //Si le champ est vide
             } else if (address.validity.valueMissing) {
                 event.preventDefault();
-                address.className= "bg-warning";
+                address.className= "border-red";
                 //Si le format de données est incorrect
             } else if (addressOk.test(address.value) == false) {
                 event.preventDefault();
-                address.className= "bg-warning";
+                address.className= "border-red";
                 //Si le champ est vide
             } else if (zipcode.validity.valueMissing) {
                 event.preventDefault();
-                zipcode.className= "bg-warning";
+                zipcode.className= "border-red";
                 //Si le format de données est incorrect
             } else if (zipCodeOk.test(zipCode.value) == false) {
                 event.preventDefault();
-                zipCode.className= "bg-warning";
+                zipCode.className= "border-red";
                 //Si le champ est vide
             } else if (city.validity.valueMissing) {
                 event.preventDefault();
-                city.className= "bg-warning";
+                city.className= "border-red";
                 //Si le format de données est incorrect
             } else if (cityOk.test(city.value) == false) {
                 event.preventDefault();
-                city.className= "bg-warning";
+                city.className= "border-red";
                 //Si le champ est vide
             } else if (email.validity.valueMissing) {
                 event.preventDefault();
-                email.className= "bg-warning";
+                email.className= "border-red";
                 //Si le format de données est incorrect
             } else if (emailOk.test(email.value) == false) {
                 event.preventDefault();
-                email.className= "bg-warning";
+                email.className= "border-red";
                 console.log(emailOk.value)
             } else if (panier == null) {
                 event.preventDefault();

@@ -77,9 +77,6 @@ function confirmation() {
     mainOrder.appendChild(buttonReturnIndex);
 }
 
-
-
-
 function clearCart() {
     let btnClear = document.getElementById('btnClear');
             btnClear.addEventListener('click', function(e){ 

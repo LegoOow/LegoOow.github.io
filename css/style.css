@@ -6072,6 +6072,9 @@ button.bg-secondary:hover,
 button.bg-secondary:focus {
   background-color: #545b62 !important;
 }
+.border-red {
+  border-color: red;
+}
 
 .bg-success {
   background-color: #28a745 !important;
