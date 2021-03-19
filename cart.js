@@ -60,23 +60,6 @@ function displayCart() {
     addTeddyCart.id = 'productCart';
     order.appendChild(addTeddyCart);
 
-    let titleCard = document.createElement('thead');
-    addTeddyCart.appendChild(titleCard);
-
-    let titleProductCard = document.createElement('th');
-    titleCard.appendChild(titleProductCard);
-    titleProductCard.textContent = 'Produit';
-
-    let titlePriceCard = document.createElement('th');
-    titleCard.appendChild(titlePriceCard);
-    titlePriceCard.textContent = 'Prix';
-    titlePriceCard.className = 'pl-2';
-
-    let titleQuantityCard = document.createElement('th');
-    titleCard.appendChild(titleQuantityCard);
-    titleQuantityCard.textContent = 'Quantité';
-    titleQuantityCard.className = 'pl-2';
-
     let bodyCart = document.createElement('tbody');
     bodyCart.id = 'productList';
     addTeddyCart.appendChild(bodyCart);
@@ -102,24 +85,35 @@ function displayCart() {
 
                 //Prix//
                 let priceTeddyCart = document.createElement('td');
-                priceTeddyCart.className = 'pl-3';
+                priceTeddyCart.className = 'px-4';
                 product.appendChild(priceTeddyCart);
                 priceTeddyCart.textContent = (element.price/100)*element.quantity + '€';
                     
                 //Quantité//
 
+                let more = document.createElement('td');
+                more.className = '';
+                more.id = 'moreQuantity';
+                product.appendChild(more);
+
                 let quantityTeddyCart = document.createElement('td');
-                quantityTeddyCart.className = 'text-center';
+                quantityTeddyCart.className = '';
                 quantityTeddyCart.name = 'quantity';
                 quantityTeddyCart.textContent = element.quantity;
                 quantityTeddyCart.id = 'selectQuantity';
                 product.appendChild(quantityTeddyCart);
 
+                let less = document.createElement('td');
+                less.className = '';
+                less.id = 'lessQuantity';
+                product.appendChild(less);
+
                 function optionQuantityMore() {
                     let optionQuantityMore = document.createElement('button');
                     optionQuantityMore.textContent = "+";
-                    optionQuantityMore.className= 'ml-1 rounded'
-                    quantityTeddyCart.appendChild(optionQuantityMore);
+                    optionQuantityMore.className= 'rounded'
+                    optionQuantityMore.id = 'quantityMore'
+                    more.appendChild(optionQuantityMore);
                     optionQuantityMore.addEventListener('click', function(e) {
                         e.preventDefault();
                         let addCart = panier.map( product => {
@@ -132,13 +126,16 @@ function displayCart() {
                             localStorage.setItem('monPanier', JSON.stringify(addCart));
                             document.location.reload()
                     })
+
                 }
+
+                
 
                 function optionQuantityLess() {
                     let optionQuantityLess = document.createElement('button');
                     optionQuantityLess.textContent = "-";
-                    optionQuantityLess.className= 'ml-1 rounded'
-                    quantityTeddyCart.appendChild(optionQuantityLess);
+                    optionQuantityLess.className= 'rounded';
+                    less.appendChild(optionQuantityLess);
                     if(element.quantity >= 1)
                     optionQuantityLess.addEventListener('click', function(e) {
                         e.preventDefault();
@@ -481,7 +478,7 @@ function displayCart() {
                 event.preventDefault();
                 email.className= "border-red";
                 console.log(emailOk.value)
-            } else if (panier == null) {
+            } else if (panier.length == 0) {
                 event.preventDefault();
                 alert(
                 "Votre panier est vide! Pour passer commande, il vous faut au moins un article ;)"
