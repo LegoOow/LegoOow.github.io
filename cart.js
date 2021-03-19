@@ -23,7 +23,7 @@ function nav() {
     a0.href = 'index.html';
     a1.className = 'nav-link text-black';
     a1.href = 'cart.html';
-    a1.textContent = "Panier (" + `${panier.length}` + ")";
+    a1.textContent = "Panier";
     img0.className = 'bg-oniPink';
     img0.src = 'images/logo.png';
     img0.alt = 'Logo Orinoco';

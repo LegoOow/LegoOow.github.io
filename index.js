@@ -2,6 +2,17 @@
 
 nav();
 
+// Panier //
+if (localStorage.getItem('monPanier')){
+    console.log('panier OK')
+}
+else {
+    console.log('création panier')
+    let init = []
+    localStorage.setItem('monPanier', (JSON.stringify(init)))
+};
+let panier = JSON.parse(localStorage.getItem('monPanier'));
+
 // Navigation //
 function nav() {
 
