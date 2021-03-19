@@ -59,7 +59,7 @@ function confirmation() {
 
     div1.className = 'row mx-auto';
     mainOrder.className = 'w-full bg-oniPink rounded my-1 p-5 col-12 text-center ';
-    pOrder.textContent = 'Félicitation, votre commande à bien été pris en compte !';
+    pOrder.textContent = 'Félicitations, votre commande à bien été prise en compte !';
     pOrder.className = 'fs-1';
     nOrder.className = 'fs-4';
     nOrder.textContent = 'Commande N°' + orderId;
