@@ -147,8 +147,6 @@ fetch('http://localhost:3000/api/teddies/' + id)
         addCart();
     })
     
-console.log(JSON.parse(localStorage.getItem('monPanier')));
-    
 
 
 

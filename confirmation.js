@@ -1,9 +1,7 @@
 //Variables//
 
 let panier = JSON.parse(localStorage.getItem('monPanier'));
-console.log(panier);
 let orderId = JSON.parse(sessionStorage.getItem('orderId'));
-console.log(orderId);
 
 //Function//
 

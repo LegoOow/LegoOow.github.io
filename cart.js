@@ -53,7 +53,6 @@ function displayCart() {
     titleOrder.textContent = 'Votre Panier';
 
     let panier = JSON.parse(localStorage.getItem('monPanier'));
-    console.log(JSON.parse(localStorage.getItem('monPanier')));
                 
     //Panier(tableau)//
     let addTeddyCart = document.createElement('table');
@@ -339,7 +338,6 @@ function displayCart() {
 
         //Produit(s)//
         panier.forEach((idArticle) => objectOrder.products.push(idArticle.id));
-        console.log(objectOrder);
 
         //Contact//
         function getFormCustomerOrder () {
@@ -360,9 +358,6 @@ function displayCart() {
             };
             contact = objectOrder.contact;
             products = objectOrder.products;
-            console.log(products);
-            console.log(objectOrder);
-            console.log(contact);
             localStorage.setItem("contact", JSON.stringify(contact));
             localStorage.setItem("objectOrder", JSON.stringify(objectOrder));
         }
@@ -384,7 +379,6 @@ function displayCart() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
                     sessionStorage.setItem("orderId", JSON.stringify(data.orderId))
                     window.location.href = "confirmation.html";
                 })   
@@ -421,13 +415,6 @@ function displayCart() {
 
             let zipCode = document.getElementById('zipcode');
             let zipCodeOk = /[0-9]{5}/;
-
-            console.log(firstNameOk.test(firstName.value));
-            console.log(lastNameOk.test(lastName.value));
-            console.log(addressOk.test(address.value))
-            console.log(zipCodeOk.test(zipCode.value))
-            console.log(cityOk.test(city.value))
-            console.log(emailOk.test(email.value))
     
             //Si le champ est vide
             if (firstName.validity.valueMissing) {
